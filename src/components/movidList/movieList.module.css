@@ -1,0 +1,31 @@
+.section {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.container {
+  width: 1300px;
+  margin: 0 auto;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  display: flex;
+  align-items: center;
+}
+.menu {
+  display: flex;
+  padding: 0;
+  border: 2px solid #6741d9;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+  margin-left: 1rem;
+}
+.menu li {
+  padding: 0.5rem 0.8rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.menu li:hover {
+  color: red;
+}

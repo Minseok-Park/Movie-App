@@ -4,9 +4,10 @@ import Header from "./components/header/header";
 import MovieList from "./components/movidList/movieList";
 import MovieScreen from "./components/movieScreen/movieScreen";
 
-function App({ movieData }) {
+function App({ movieService, tvService }) {
   const initialData = {
     movieList: [],
+    tvList: [],
   };
 
   function reducer(state, action) {
@@ -17,20 +18,20 @@ function App({ movieData }) {
           movieList: action.data,
         };
       default:
-        throw new Error("dd");
+        throw new Error(`Unhandled action type : ${action.type}`);
     }
   }
 
   const [state, dispatch] = useReducer(reducer, initialData);
   const { movieList } = state;
   useEffect(() => {
-    movieData.movieList().then((response) => {
+    movieService.popularMovie().then((response) => {
       dispatch({
         type: "GET_MOVIES",
         data: response.data.results,
       });
     });
-  }, [movieData]);
+  }, [movieService]);
 
   return (
     <div className={styles.app}>

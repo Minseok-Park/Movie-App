@@ -2,13 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./app";
-import MovieData from "./service/movieData";
+import movieService from "./service/movieService";
+import tvService from "./service/tvService";
 
-const movieData = new MovieData();
+const movieData = new movieService();
+const tvData = new tvService();
 
 ReactDOM.render(
   <React.StrictMode>
-    <App movieData={movieData} />
+    <App movieService={movieData} tvService={tvData} />
   </React.StrictMode>,
   document.getElementById("root")
 );

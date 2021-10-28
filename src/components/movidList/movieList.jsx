@@ -16,14 +16,14 @@ const MovieList = ({ movieList }) => {
       </div>
 
       <div className={styles.container}>
-        <ul>
+        <ul className={styles.movieContainer}>
           {movieList &&
             movieList.map((movie) => (
               <MovieItem
                 key={movie.id}
                 title={movie.title}
                 poster={movie.poster_path}
-                rank={movie.vote_averate}
+                vote={movie.vote_average}
                 date={movie.release_date}
               />
             ))}

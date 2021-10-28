@@ -12,6 +12,13 @@
   display: flex;
   align-items: center;
 }
+.movieContainer {
+  width: 100%;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 .menu {
   display: flex;
   padding: 0;

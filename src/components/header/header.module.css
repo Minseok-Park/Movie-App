@@ -1,0 +1,33 @@
+.header {
+  width: 100%;
+  background-color: #212529;
+  color: #fff;
+  display: flex;
+  align-items: center;
+}
+.container {
+  display: flex;
+  align-items: center;
+  width: 1300px;
+  margin: 0 auto;
+}
+.nav {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+.nav li {
+  padding: 0.8rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.menu {
+  flex: 1;
+}
+.logo {
+  color: #ffd43b;
+}
+.icon {
+  font-size: 1.1rem;
+  margin-left: 0.5rem;
+}

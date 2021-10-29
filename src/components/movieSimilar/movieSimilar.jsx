@@ -1,12 +1,14 @@
 import React from "react";
+import MovieItem from "../movieItem/movieItem";
 import styles from "./movieSimilar.module.css";
 
 const MovieSimilar = ({ movieSimilarList }) => {
-  console.log(movieSimilarList);
+  const { results } = movieSimilarList;
+
   return (
-    <div className={styles.container}>
+    <section className={styles.section}>
       <h1>추천 작품</h1>
-    </div>
+    </section>
   );
 };
 

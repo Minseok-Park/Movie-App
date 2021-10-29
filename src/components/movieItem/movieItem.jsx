@@ -7,8 +7,10 @@ const MovieItem = ({ movieDetail, id, title, poster, vote, date }) => {
   const [info, setInfo] = useState(id);
 
   const onDetail = () => {
-    setInfo((info) => id);
+    setInfo(id);
     movieDetail(info);
+    console.log(info);
+    setInfo(null);
   };
 
   return (

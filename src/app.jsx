@@ -40,7 +40,7 @@ function App({ movieService }) {
       console.log(response);
       dispatch({
         type: "DETAIL_MOVIES",
-        data: response,
+        data: response.data,
       });
     });
   }
@@ -67,8 +67,6 @@ function App({ movieService }) {
   useEffect(() => {
     if (movieDetailList !== null) goToDetail();
   }, [goToDetail, movieDetailList]);
-
-  console.log(movieDetailList);
 
   return (
     <Switch>

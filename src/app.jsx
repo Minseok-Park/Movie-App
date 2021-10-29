@@ -26,6 +26,7 @@ function App({ movieService }) {
           ...state,
           movieDetailList: action.data,
         };
+
       default:
         throw new Error(`Unhandled action type : ${action.type}`);
     }
@@ -36,9 +37,10 @@ function App({ movieService }) {
 
   function movieDetail(movieId) {
     movieService.detailMovie(movieId).then((response) => {
+      console.log(response);
       dispatch({
         type: "DETAIL_MOVIES",
-        data: response.data,
+        data: response,
       });
     });
   }
@@ -65,6 +67,8 @@ function App({ movieService }) {
   useEffect(() => {
     if (movieDetailList !== null) goToDetail();
   }, [goToDetail, movieDetailList]);
+
+  console.log(movieDetailList);
 
   return (
     <Switch>

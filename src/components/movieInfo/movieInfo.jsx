@@ -17,6 +17,7 @@ const MovieInfo = ({ movieDetailList }) => {
     homepage,
     backdrop_path,
     vote_average,
+    belongs_to_collection,
   } = movieDetailList;
 
   return (

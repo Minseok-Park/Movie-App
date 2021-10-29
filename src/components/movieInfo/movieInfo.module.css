@@ -1,6 +1,7 @@
 .section {
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   background-color: #212529;
 }
 .container {

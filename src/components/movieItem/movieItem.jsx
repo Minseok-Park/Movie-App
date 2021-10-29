@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./movieItem.module.css";
 
-const MovieItem = ({ title, poster, vote, date }) => {
+const MovieItem = ({ movieDetail, id, title, poster, vote, date }) => {
   const imgLink = "https://image.tmdb.org/t/p/w200/";
-  console.log(vote);
+
+  const [info, setInfo] = useState(id);
+
+  const onDetail = () => {
+    setInfo((info) => id);
+    movieDetail(info);
+  };
+
   return (
     <>
-      <li className={styles.movie}>
+      <li onClick={onDetail} className={styles.movie}>
         <img
           className={styles.poster}
           src={`${imgLink}${poster}`}

@@ -1,13 +1,13 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useEffect, useReducer } from "react";
 import styles from "./app.module.css";
 import Header from "./components/header/header";
-import MovieList from "./components/movidList/movieList";
+import MovieList from "./components/movieList/movieList";
 import MovieScreen from "./components/movieScreen/movieScreen";
 
-function App({ movieService, tvService }) {
+function App({ movieService }) {
   const initialData = {
     movieList: [],
-    tvList: [],
+    movieDetailList: {},
   };
 
   function reducer(state, action) {
@@ -16,6 +16,11 @@ function App({ movieService, tvService }) {
         return {
           ...state,
           movieList: action.data,
+        };
+      case "DETAIL_MOVIES":
+        return {
+          ...state,
+          movieDetailList: action.data,
         };
       default:
         throw new Error(`Unhandled action type : ${action.type}`);
@@ -33,13 +38,24 @@ function App({ movieService, tvService }) {
     });
   }, [movieService]);
 
+  function movieDetail(movieId) {
+    movieId && console.log(movieId);
+    movieService.detailMovie(movieId).then((response) => {
+      dispatch({
+        type: "DETAIL_MOVIES",
+        data: response.data,
+      });
+    });
+    console.log(state.movieDetailList);
+  }
+
   return (
     <div className={styles.app}>
       <Header />
-      <div className={styles.container}>
+      {/* <div className={styles.container}>
         <MovieScreen />
-        <MovieList movieList={movieList} />
-      </div>
+        <MovieList movieList={movieList} movieDetail={movieDetail} />
+      </div> */}
     </div>
   );
 }

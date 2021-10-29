@@ -36,3 +36,7 @@
 .menu li:hover {
   color: red;
 }
+.toggle:active,
+.toggle:focus {
+  background-color: yellow;
+}

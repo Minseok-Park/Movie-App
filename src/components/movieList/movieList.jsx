@@ -2,7 +2,7 @@ import React from "react";
 import MovieItem from "../movieItem/movieItem";
 import styles from "./movieList.module.css";
 
-const MovieList = ({ movieList }) => {
+const MovieList = ({ movieList, movieDetail }) => {
   console.log(movieList);
 
   return (
@@ -10,8 +10,8 @@ const MovieList = ({ movieList }) => {
       <div className={styles.container}>
         <h1>가장 핫한 프로그램</h1>
         <ul className={styles.menu}>
-          <li>영화</li>
-          <li>TV</li>
+          <li className={styles.toggle}>영화</li>
+          <li className={styles.toggle}>TV</li>
         </ul>
       </div>
 
@@ -20,7 +20,9 @@ const MovieList = ({ movieList }) => {
           {movieList &&
             movieList.map((movie) => (
               <MovieItem
+                movieDetail={movieDetail}
                 key={movie.id}
+                id={movie.id}
                 title={movie.title}
                 poster={movie.poster_path}
                 vote={movie.vote_average}

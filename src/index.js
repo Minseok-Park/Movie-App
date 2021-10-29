@@ -3,12 +3,15 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./app";
 import movieService from "./service/movieService";
+import { BrowserRouter } from "react-router-dom";
 
 const movieData = new movieService();
 
 ReactDOM.render(
   <React.StrictMode>
-    <App movieService={movieData} />
+    <BrowserRouter>
+      <App movieService={movieData} />
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );

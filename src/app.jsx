@@ -31,6 +31,7 @@ function App({ movieService }) {
         return {
           ...state,
           movieSearchList: action.data,
+          movieDetailList: null,
         };
 
       default:
@@ -39,7 +40,7 @@ function App({ movieService }) {
   }
 
   const [state, dispatch] = useReducer(reducer, initialData);
-  const { movieList, movieDetailList } = state;
+  const { movieList, movieDetailList, movieSearchList } = state;
 
   function movieDetail(movieId) {
     movieService.detailMovie(movieId).then((response) => {
@@ -56,7 +57,7 @@ function App({ movieService }) {
     movieService.searchMovie(keyword).then((response) => {
       dispatch({
         type: "SEARCH_MOVIES",
-        data: response.data,
+        data: response.data.results,
       });
     });
   }
@@ -84,7 +85,7 @@ function App({ movieService }) {
     if (movieDetailList !== null) goToDetail();
   }, [goToDetail, movieDetailList]);
 
-  console.log(state.movieSearchList);
+  console.log(movieSearchList);
 
   return (
     <Switch>
@@ -96,6 +97,7 @@ function App({ movieService }) {
               movieList={movieList}
               movieDetail={movieDetail}
               movieSearch={movieSearch}
+              movieSearchList={movieSearchList}
             />
           </Route>
           <Route path="/detail">

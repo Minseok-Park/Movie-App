@@ -1,24 +1,27 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, memo, useCallback } from "react";
 import styles from "./movieScreen.module.css";
 
 const MovieScreen = ({ movieSearch }) => {
   const formRef = useRef();
   const inputRef = useRef();
 
-  const [value, setValue] = useState(null);
+  const [value, setValue] = useState(0);
 
-  const onChange = (e) => {
+  const onChange = useCallback((e) => {
     const { value } = e.target;
-    setValue(value);
-  };
+    value && setValue(value);
+  }, []);
 
   inputRef.current = value;
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    movieSearch(inputRef.current);
-    formRef.current.reset();
-  };
+  const onSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      movieSearch(inputRef.current);
+      formRef.current.reset();
+    },
+    [movieSearch]
+  );
 
   return (
     <section className={styles.section}>
@@ -35,11 +38,13 @@ const MovieScreen = ({ movieSearch }) => {
             className={styles.searchInput}
             placeholder="영화, TV 프로그램 검색..."
           />
-          <button className={styles.searchBtn}>검색</button>
+          <button onClick={() => onSubmit} className={styles.searchBtn}>
+            검색
+          </button>
         </form>
       </div>
     </section>
   );
 };
 
-export default MovieScreen;
+export default memo(MovieScreen);

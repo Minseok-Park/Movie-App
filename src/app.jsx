@@ -11,6 +11,7 @@ function App({ movieService }) {
   const initialData = {
     movieList: null,
     movieDetailList: null,
+    movieSearchList: null,
   };
 
   function reducer(state, action) {
@@ -26,6 +27,11 @@ function App({ movieService }) {
           ...state,
           movieDetailList: action.data,
         };
+      case "SEARCH_MOVIES":
+        return {
+          ...state,
+          movieSearchList: action.data,
+        };
 
       default:
         throw new Error(`Unhandled action type : ${action.type}`);
@@ -40,6 +46,16 @@ function App({ movieService }) {
       console.log(response);
       dispatch({
         type: "DETAIL_MOVIES",
+        data: response.data,
+      });
+    });
+  }
+
+  // 검색 기능
+  function movieSearch(keyword) {
+    movieService.searchMovie(keyword).then((response) => {
+      dispatch({
+        type: "SEARCH_MOVIES",
         data: response.data,
       });
     });
@@ -68,13 +84,19 @@ function App({ movieService }) {
     if (movieDetailList !== null) goToDetail();
   }, [goToDetail, movieDetailList]);
 
+  console.log(state.movieSearchList);
+
   return (
     <Switch>
       <>
         <div className={styles.app}>
           <Header />
           <Route path="/" exact>
-            <Main movieList={movieList} movieDetail={movieDetail} />
+            <Main
+              movieList={movieList}
+              movieDetail={movieDetail}
+              movieSearch={movieSearch}
+            />
           </Route>
           <Route path="/detail">
             <MovieDetailPage />

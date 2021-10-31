@@ -3,14 +3,13 @@ import styles from "./movieItem.module.css";
 
 const MovieItem = ({ movieDetail, id, title, poster, vote, date }) => {
   const imgLink = "https://image.tmdb.org/t/p/w200/";
+  console.log(movieDetail);
 
   const [info, setInfo] = useState(id);
 
   const onDetail = () => {
     setInfo(id);
     movieDetail(info);
-    console.log(info);
-    setInfo(null);
   };
 
   return (

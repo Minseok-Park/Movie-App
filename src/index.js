@@ -8,10 +8,10 @@ import { BrowserRouter } from "react-router-dom";
 const movieData = new movieService();
 
 ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <App movieService={movieData} />
-    </BrowserRouter>
-  </React.StrictMode>,
+  //<React.StrictMode>
+  <BrowserRouter>
+    <App movieService={movieData} />
+  </BrowserRouter>,
+  //</React.StrictMode>,
   document.getElementById("root")
 );

@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect, useReducer, useCallback } from "react";
 import { Switch, Route, useHistory } from "react-router-dom";
 import styles from "./app.module.css";
 import Header from "./components/header/header";
@@ -21,6 +21,7 @@ function App({ movieService }) {
           ...state,
           movieList: action.data,
           movieDetailList: null,
+          movieRelationList: null,
         };
       case "DETAIL_MOVIES":
         return {
@@ -32,6 +33,12 @@ function App({ movieService }) {
           ...state,
           movieSearchList: action.data,
           movieDetailList: null,
+          movieRelationList: null,
+        };
+      case "RELATION_MOVIES":
+        return {
+          ...state,
+          movieRelationList: action.data,
         };
 
       default:
@@ -42,26 +49,45 @@ function App({ movieService }) {
   const [state, dispatch] = useReducer(reducer, initialData);
   const { movieList, movieDetailList, movieSearchList } = state;
 
-  function movieDetail(movieId) {
+  // 영화 자세한 페이지
+  // const movieDetail = useCallback(
+  //   (movieId) => {
+  //     movieService.detailMovie(movieId).then((response) => {
+  //       console.log(response);
+  //       dispatch({
+  //         type: "DETAIL_MOVIES",
+  //       });
+  //     });
+  //   },
+  //   [movieService]
+  // );
+
+  const movieDetail = (movieId) => {
+    console.log(movieId);
+    movieService.detailMovie(movieId).then((response) => console.log(response));
+
     movieService.detailMovie(movieId).then((response) => {
-      console.log(response);
       dispatch({
         type: "DETAIL_MOVIES",
-        data: response.data,
+        data: response,
       });
     });
-  }
+  };
 
   // 검색 기능
-  function movieSearch(keyword) {
-    movieService.searchMovie(keyword).then((response) => {
-      dispatch({
-        type: "SEARCH_MOVIES",
-        data: response.data.results,
+  const movieSearch = useCallback(
+    (keyword) => {
+      movieService.searchMovie(keyword).then((response) => {
+        dispatch({
+          type: "SEARCH_MOVIES",
+          data: response.data.results,
+        });
       });
-    });
-  }
+    },
+    [movieService]
+  );
 
+  // 자세한 목록 페이지로 이동
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const goToDetail = () => {
     history.push({
@@ -85,7 +111,7 @@ function App({ movieService }) {
     if (movieDetailList !== null) goToDetail();
   }, [goToDetail, movieDetailList]);
 
-  console.log(movieSearchList);
+  console.log(movieDetailList);
 
   return (
     <Switch>

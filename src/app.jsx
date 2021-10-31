@@ -12,6 +12,7 @@ function App({ movieService }) {
     movieList: null,
     movieDetailList: null,
     movieSearchList: null,
+    movieRelationList: null,
   };
 
   function reducer(state, action) {
@@ -21,7 +22,6 @@ function App({ movieService }) {
           ...state,
           movieList: action.data,
           movieDetailList: null,
-          movieRelationList: null,
         };
       case "DETAIL_MOVIES":
         return {
@@ -32,8 +32,7 @@ function App({ movieService }) {
         return {
           ...state,
           movieSearchList: action.data,
-          movieDetailList: null,
-          movieRelationList: null,
+          //movieDetailList: null,
         };
       case "RELATION_MOVIES":
         return {
@@ -47,25 +46,23 @@ function App({ movieService }) {
   }
 
   const [state, dispatch] = useReducer(reducer, initialData);
-  const { movieList, movieDetailList, movieSearchList } = state;
+  const { movieList, movieDetailList, movieSearchList, movieRelationList } =
+    state;
 
+  // 자세한 목록 페이지로 이동
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const goToDetail = () => {
+    history.push({
+      pathname: "/detail",
+      state: {
+        movieDetailList,
+      },
+    });
+    // 실제로 url 변경하기 위해 사용!
+    window.location.replace("/detail");
+  };
   // 영화 자세한 페이지
-  // const movieDetail = useCallback(
-  //   (movieId) => {
-  //     movieService.detailMovie(movieId).then((response) => {
-  //       console.log(response);
-  //       dispatch({
-  //         type: "DETAIL_MOVIES",
-  //       });
-  //     });
-  //   },
-  //   [movieService]
-  // );
-
   const movieDetail = (movieId) => {
-    console.log(movieId);
-    movieService.detailMovie(movieId).then((response) => console.log(response));
-
     movieService.detailMovie(movieId).then((response) => {
       dispatch({
         type: "DETAIL_MOVIES",
@@ -87,17 +84,6 @@ function App({ movieService }) {
     [movieService]
   );
 
-  // 자세한 목록 페이지로 이동
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const goToDetail = () => {
-    history.push({
-      pathname: "/detail",
-      state: {
-        movieDetailList,
-      },
-    });
-  };
-
   useEffect(() => {
     movieService.popularMovie().then((response) => {
       dispatch({
@@ -110,8 +96,6 @@ function App({ movieService }) {
   useEffect(() => {
     if (movieDetailList !== null) goToDetail();
   }, [goToDetail, movieDetailList]);
-
-  console.log(movieDetailList);
 
   return (
     <Switch>
@@ -127,7 +111,11 @@ function App({ movieService }) {
             />
           </Route>
           <Route path="/detail">
-            <MovieDetailPage />
+            <MovieDetailPage
+              movieList={movieRelationList}
+              movieDetail={movieDetail}
+              dispatch={dispatch}
+            />
           </Route>
         </div>
       </>

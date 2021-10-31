@@ -1,9 +1,6 @@
 import axios from "axios";
 
 class movieService {
-  constructor() {
-    this.movieList = [];
-  }
   // 유명 영화 목록
   async popularMovie() {
     const response = await axios.get(

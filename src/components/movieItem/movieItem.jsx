@@ -1,16 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
+import { useCallback } from "react/cjs/react.development";
 import styles from "./movieItem.module.css";
 
 const MovieItem = ({ movieDetail, id, title, poster, vote, date }) => {
   const imgLink = "https://image.tmdb.org/t/p/w200/";
-  console.log(movieDetail);
-
   const [info, setInfo] = useState(id);
 
-  const onDetail = () => {
+  const onDetail = useCallback(() => {
     setInfo(id);
     movieDetail(info);
-  };
+  }, [id, info, movieDetail]);
 
   return (
     <>
@@ -28,4 +27,4 @@ const MovieItem = ({ movieDetail, id, title, poster, vote, date }) => {
   );
 };
 
-export default MovieItem;
+export default memo(MovieItem);

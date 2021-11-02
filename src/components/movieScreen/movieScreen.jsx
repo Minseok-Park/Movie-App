@@ -7,17 +7,20 @@ const MovieScreen = ({ onSearch }) => {
 
   const [value, setValue] = useState();
 
-  const onChange = (e) => {
+  const onChange = useCallback((e) => {
     const { value } = e.target;
     inputRef.current = value;
     setValue(inputRef.current);
-  };
+  }, []);
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    value && onSearch(value);
-    formRef.current.reset();
-  };
+  const onSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      value && onSearch(value);
+      formRef.current.reset();
+    },
+    [onSearch, value]
+  );
 
   return (
     <section className={styles.section}>

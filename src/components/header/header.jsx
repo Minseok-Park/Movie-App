@@ -2,14 +2,15 @@ import React, { memo } from "react";
 import styles from "./header.module.css";
 import { FaPlus, FaInfoCircle, FaCanadianMapleLeaf } from "react-icons/fa";
 import { useHistory } from "react-router";
+import { useCallback } from "react/cjs/react.development";
 
 const Header = (props) => {
   const history = useHistory();
-  const goToMain = () => {
+  const goToMain = useCallback(() => {
     history.push({
       pathname: "/",
     });
-  };
+  }, [history]);
 
   return (
     <header className={styles.header}>
@@ -18,10 +19,10 @@ const Header = (props) => {
           <li className={styles.logo} onClick={goToMain}>
             MS-MOVIE <FaCanadianMapleLeaf />
           </li>
-          <li>영화</li>
-          <li>TV 프로그램</li>
+          <li className={styles.tag}>영화</li>
+          {/* <li>TV 프로그램</li>
           <li>인물</li>
-          <li>More</li>
+          <li>More</li> */}
         </ul>
 
         <ul className={`${styles.nav}`}>

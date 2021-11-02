@@ -14,13 +14,13 @@ const MovieList = ({ movieList, onDetail, title }) => {
           {movieList &&
             movieList.map((movie) => (
               <MovieItem
-                onDetail={onDetail}
                 key={movie.id}
                 id={movie.id}
                 title={movie.title}
                 poster={movie.poster_path}
                 vote={movie.vote_average}
                 date={movie.release_date}
+                onDetail={onDetail}
               />
             ))}
         </ul>

@@ -40,3 +40,9 @@
 .toggle:focus {
   background-color: yellow;
 }
+
+@media screen and (max-width: 768px) {
+  .container {
+    width: 100%;
+  }
+}

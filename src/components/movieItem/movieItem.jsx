@@ -1,5 +1,4 @@
 import React, { useState, memo } from "react";
-import { useHistory } from "react-router";
 import { useCallback } from "react/cjs/react.development";
 
 import styles from "./movieItem.module.css";
@@ -7,9 +6,12 @@ import styles from "./movieItem.module.css";
 const MovieItem = ({ onDetail, id, title, poster, vote, date }) => {
   const imgLink = "https://image.tmdb.org/t/p/w200/";
 
-  const onClick = () => {
-    id && onDetail(id);
-  };
+  const [uid, setUid] = useState(id);
+
+  const onClick = useCallback(() => {
+    id && setUid(id);
+    onDetail(uid);
+  }, [id, onDetail, uid]);
 
   return (
     <>

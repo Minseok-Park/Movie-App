@@ -35,3 +35,18 @@
 .icon a {
   color: #fff;
 }
+
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    position: relatvie;
+  }
+  .logo {
+    position: absolute;
+    left: 0;
+  }
+  .tag,
+  .icon {
+    display: none;
+  }
+}

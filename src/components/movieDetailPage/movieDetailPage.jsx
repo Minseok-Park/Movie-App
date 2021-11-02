@@ -1,25 +1,20 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styles from "./movieDetailPage.module.css";
-import { useHistory } from "react-router";
 import MovieInfo from "../movieInfo/movieInfo";
 import MovieList from "../movieList/movieList";
 
-const MovieDetailPage = () => {
-  const history = useHistory();
-  console.log(history.location.state);
-  const detailMovie = history.location.state[0];
+const MovieDetailPage = ({ onDetail, movieDetailList }) => {
   return (
-    <div className={styles.movieDeatilPage}>
-      <MovieInfo detailMovie={detailMovie} />
-      {/* <MovieInfo />
-      <div>
-        <MovieList
-          movieList={movieList}
-          movieDetail={movieDetail}
-          title="관련 있는 영화 목록"
-        />
-      </div> */}
-    </div>
+    <>
+      {movieDetailList ? (
+        <div className={styles.movieDeatilPage}>
+          <MovieInfo detailMovie={movieDetailList[0]} />
+          <MovieList movieList={movieDetailList[1]} onDetail={onDetail} />
+        </div>
+      ) : (
+        <div>MS-MOVIE를 클릭하여 다시 데이터를 받아주세요</div>
+      )}
+    </>
   );
 };
 

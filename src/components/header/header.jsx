@@ -1,18 +1,21 @@
 import React, { memo } from "react";
 import styles from "./header.module.css";
-import {
-  FaPlus,
-  FaSearch,
-  FaInfoCircle,
-  FaCanadianMapleLeaf,
-} from "react-icons/fa";
+import { FaPlus, FaInfoCircle, FaCanadianMapleLeaf } from "react-icons/fa";
+import { useHistory } from "react-router";
 
 const Header = (props) => {
+  const history = useHistory();
+  const goToMain = () => {
+    history.push({
+      pathname: "/",
+    });
+  };
+
   return (
     <header className={styles.header}>
       <div className={styles.container}>
         <ul className={`${styles.nav} ${styles.menu}`}>
-          <li className={styles.logo}>
+          <li className={styles.logo} onClick={goToMain}>
             MS-MOVIE <FaCanadianMapleLeaf />
           </li>
           <li>영화</li>
@@ -23,11 +26,11 @@ const Header = (props) => {
 
         <ul className={`${styles.nav}`}>
           <li className={styles.icon}>
-            <FaPlus />
+            <a href="https://www.themoviedb.org/movie/new?language=ko">
+              <FaPlus />
+            </a>
           </li>
-          <li className={styles.icon}>
-            <FaSearch />
-          </li>
+
           <li className={styles.icon}>
             <FaInfoCircle />
           </li>

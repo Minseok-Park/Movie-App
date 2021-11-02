@@ -10,17 +10,16 @@ const MovieScreen = ({ movieSearch }) => {
   const onChange = useCallback((e) => {
     const { value } = e.target;
     value && setValue(value);
+    inputRef.current = value;
   }, []);
-
-  inputRef.current = value;
 
   const onSubmit = useCallback(
     (e) => {
       e.preventDefault();
-      movieSearch(inputRef.current);
+      movieSearch(value);
       formRef.current.reset();
     },
-    [movieSearch]
+    [movieSearch, value]
   );
 
   return (
@@ -36,7 +35,7 @@ const MovieScreen = ({ movieSearch }) => {
             ref={inputRef}
             type="text"
             className={styles.searchInput}
-            placeholder="영화, TV 프로그램 검색..."
+            placeholder="영화를 검색해주세요"
           />
           <button onClick={() => onSubmit} className={styles.searchBtn}>
             검색

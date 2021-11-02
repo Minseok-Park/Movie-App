@@ -6,7 +6,7 @@ class movieService {
     const response = await axios.get(
       `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&page=1&language=ko`
     );
-    return response;
+    return response.data;
   }
   // 자세한 페이지, 영화 연관 목록
   async detailMovie(movieId) {

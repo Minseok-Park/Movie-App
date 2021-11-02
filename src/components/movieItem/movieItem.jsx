@@ -1,10 +1,13 @@
 import React, { useState, memo } from "react";
+import { useHistory } from "react-router";
 import { useCallback } from "react/cjs/react.development";
+
 import styles from "./movieItem.module.css";
 
 const MovieItem = ({ movieDetail, id, title, poster, vote, date }) => {
   const imgLink = "https://image.tmdb.org/t/p/w200/";
   const [info, setInfo] = useState(id);
+  const history = useHistory();
 
   const onDetail = useCallback(() => {
     setInfo(id);

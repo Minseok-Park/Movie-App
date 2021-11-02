@@ -26,8 +26,12 @@
 }
 .logo {
   color: #ffd43b;
+  cursor: pointer;
 }
 .icon {
   font-size: 1.1rem;
   margin-left: 0.5rem;
+}
+.icon a {
+  color: #fff;
 }

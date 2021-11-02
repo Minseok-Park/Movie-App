@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { memo } from "react";
 import styles from "./movieInfo.module.css";
 import { FaCrown } from "react-icons/fa";
 
 const MovieInfo = ({ movieDetailList }) => {
-  console.log(movieDetailList);
-
   const imgLink = "https://image.tmdb.org/t/p/w300/";
   const {
     poster_path,
@@ -58,4 +56,4 @@ const MovieInfo = ({ movieDetailList }) => {
   );
 };
 
-export default MovieInfo;
+export default memo(MovieInfo);

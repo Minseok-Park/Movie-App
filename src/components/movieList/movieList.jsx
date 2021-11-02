@@ -2,12 +2,11 @@ import React from "react";
 import MovieItem from "../movieItem/movieItem";
 import styles from "./movieList.module.css";
 
-const MovieList = ({ movieList, movieDetail }) => {
-  console.log(movieList);
+const MovieList = ({ movieList, movieDetail, title }) => {
   return (
     <section className={styles.section}>
       <div className={styles.container}>
-        <h1>가장 인기 있는 프로그램</h1>
+        <h1>{title}</h1>
       </div>
 
       <div className={styles.container}>

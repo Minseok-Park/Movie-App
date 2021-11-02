@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import styles from "./movieInfo.module.css";
 import { FaCrown } from "react-icons/fa";
 
-const MovieInfo = ({ movieDetailList }) => {
+const MovieInfo = ({ detailMovie }) => {
   const imgLink = "https://image.tmdb.org/t/p/w300/";
   const {
     poster_path,
@@ -15,7 +15,7 @@ const MovieInfo = ({ movieDetailList }) => {
     homepage,
     backdrop_path,
     vote_average,
-  } = movieDetailList;
+  } = detailMovie;
 
   return (
     <section className={styles.section}>

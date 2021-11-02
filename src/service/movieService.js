@@ -16,7 +16,7 @@ class movieService {
     const resRelation = await axios.get(
       `https://api.themoviedb.org/3/movie/${movieId}/recommendations?api_key=${process.env.REACT_APP_API_KEY}&language=ko&page=1`
     );
-    return Promise.all([resDetail.data, resRelation.data]);
+    return Promise.all([resDetail.data, resRelation.data.results]);
   }
   // 영화 검색 목록
   async searchMovie(keyword) {

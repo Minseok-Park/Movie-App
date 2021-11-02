@@ -2,7 +2,7 @@ import React from "react";
 import MovieItem from "../movieItem/movieItem";
 import styles from "./movieList.module.css";
 
-const MovieList = ({ movieList, movieDetail, title }) => {
+const MovieList = ({ movieList, onDetail, title }) => {
   return (
     <section className={styles.section}>
       <div className={styles.container}>
@@ -14,7 +14,7 @@ const MovieList = ({ movieList, movieDetail, title }) => {
           {movieList &&
             movieList.map((movie) => (
               <MovieItem
-                movieDetail={movieDetail}
+                onDetail={onDetail}
                 key={movie.id}
                 id={movie.id}
                 title={movie.title}

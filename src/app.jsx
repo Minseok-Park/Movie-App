@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import styles from "./app.module.css";
 import Header from "./components/header/header";
 import Main from "./components/Main/main";
+import MovieDetailPage from "./components/movieDetailPage/movieDetailPage";
 
 function App({ movieService }) {
   return (
@@ -12,6 +13,9 @@ function App({ movieService }) {
           <Header />
           <Route path="/" exact>
             <Main movieService={movieService} />
+          </Route>
+          <Route path="/detail">
+            <MovieDetailPage />
           </Route>
         </div>
       </>

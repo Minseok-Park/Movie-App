@@ -4,19 +4,16 @@ import { useCallback } from "react/cjs/react.development";
 
 import styles from "./movieItem.module.css";
 
-const MovieItem = ({ movieDetail, id, title, poster, vote, date }) => {
+const MovieItem = ({ onDetail, id, title, poster, vote, date }) => {
   const imgLink = "https://image.tmdb.org/t/p/w200/";
-  const [info, setInfo] = useState(id);
-  const history = useHistory();
 
-  const onDetail = useCallback(() => {
-    setInfo(id);
-    movieDetail(info);
-  }, [id, info, movieDetail]);
+  const onClick = () => {
+    id && onDetail(id);
+  };
 
   return (
     <>
-      <li onClick={onDetail} className={styles.movie}>
+      <li onClick={onClick} className={styles.movie}>
         <img
           className={styles.poster}
           src={`${imgLink}${poster}`}

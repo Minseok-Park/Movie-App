@@ -13,8 +13,6 @@ const MovieScreen = ({ onSearch }) => {
     setValue(inputRef.current);
   };
 
-  console.log("value : ", value);
-
   const onSubmit = (e) => {
     e.preventDefault();
     value && onSearch(value);

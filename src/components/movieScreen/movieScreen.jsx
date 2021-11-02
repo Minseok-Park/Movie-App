@@ -1,26 +1,25 @@
 import React, { useRef, useState, memo, useCallback } from "react";
 import styles from "./movieScreen.module.css";
 
-const MovieScreen = ({ movieSearch }) => {
-  const formRef = useRef();
+const MovieScreen = ({ onSearch }) => {
   const inputRef = useRef();
+  const formRef = useRef();
 
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState();
 
-  const onChange = useCallback((e) => {
+  const onChange = (e) => {
     const { value } = e.target;
-    value && setValue(value);
     inputRef.current = value;
-  }, []);
+    setValue(inputRef.current);
+  };
 
-  const onSubmit = useCallback(
-    (e) => {
-      e.preventDefault();
-      movieSearch(value);
-      formRef.current.reset();
-    },
-    [movieSearch, value]
-  );
+  console.log("value : ", value);
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    value && onSearch(value);
+    formRef.current.reset();
+  };
 
   return (
     <section className={styles.section}>
@@ -31,13 +30,13 @@ const MovieScreen = ({ movieSearch }) => {
         </h2>
         <form ref={formRef} className={styles.searchForm} onSubmit={onSubmit}>
           <input
-            onChange={onChange}
             ref={inputRef}
+            onChange={onChange}
             type="text"
             className={styles.searchInput}
             placeholder="영화를 검색해주세요"
           />
-          <button onClick={() => onSubmit} className={styles.searchBtn}>
+          <button className={styles.searchBtn} onClick={onSubmit}>
             검색
           </button>
         </form>

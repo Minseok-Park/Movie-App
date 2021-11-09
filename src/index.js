@@ -9,7 +9,7 @@ const movieData = new movieService();
 
 ReactDOM.render(
   //<React.StrictMode>
-  <BrowserRouter>
+  <BrowserRouter basename="/ms-movie">
     <App movieService={movieData} />
   </BrowserRouter>,
   //</React.StrictMode>,

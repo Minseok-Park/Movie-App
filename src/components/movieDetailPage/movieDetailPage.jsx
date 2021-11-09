@@ -16,7 +16,9 @@ const MovieDetailPage = ({ onDetail, movieDetailList }) => {
           />
         </div>
       ) : (
-        <div>MS-MOVIE를 클릭하여 다시 데이터를 받아주세요</div>
+        <div className={styles.error}>
+          <h2>MS-MOVIE를 클릭하여 데이터를 다시 받아주세요</h2>
+        </div>
       )}
     </>
   );

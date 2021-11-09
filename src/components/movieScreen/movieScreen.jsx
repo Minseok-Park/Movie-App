@@ -35,6 +35,7 @@ const MovieScreen = ({ onSearch }) => {
             onChange={onChange}
             type="text"
             className={styles.searchInput}
+            value={value}
             placeholder="영화를 검색해주세요"
           />
           <button className={styles.searchBtn} onClick={onSubmit}>

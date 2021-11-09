@@ -58,8 +58,12 @@
     width: 100%;
     text-align: center;
   }
+  .title {
+    font-size: 1.5rem;
+  }
   .text {
-    font-size: 1.2rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
   }
   .searchForm {
     flex-direction: column;
@@ -72,6 +76,6 @@
   }
   .searchBtn {
     width: 100%;
-    margin: 0;
+    margin-left: 0;
   }
 }

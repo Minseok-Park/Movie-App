@@ -58,11 +58,13 @@ const Main = ({ movieService, state, dispatch, onDetail }) => {
           onDetail={onDetail}
         />
       )}
-      <MovieList
-        title="가장 인기 있는 영화 목록"
-        movieList={movieList}
-        onDetail={onDetail}
-      />
+      {!search && (
+        <MovieList
+          title="가장 인기 있는 영화 목록"
+          movieList={movieList}
+          onDetail={onDetail}
+        />
+      )}
     </>
   );
 };

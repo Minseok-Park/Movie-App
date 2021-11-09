@@ -1,70 +1,100 @@
-# Getting Started with Create React App
+<img alt="MovieApp" src="https://img.shields.io/badge/movie App%20-blue.svg?&style=for-the-badge&logo=appveyor&logoColor=white"/>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# React를 활용한 영화 App
 
-## Available Scripts
+_OMDB API를 활용 (영화 목록, 검색, 관련 있는 영화 목록)_
 
-In the project directory, you can run:
+Demo Link ⇒ [Movie App](준비중)
 
-### `yarn start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 🔗 목차
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+1. [프로젝트 개발 목적](#1-프로젝트-개발-목적)
+2. [기술 스택](#2-기술-스택)
+3. [프로젝트 개요](#3-프로젝트-개요)
+4. [페이지 구성](#4-페이지-구성)
+5. [프로젝트를 통해 배운 점](#5-프로젝트를-통해-배운-점)
+6. [개선할 점](#6-개선할-점)
 
-### `yarn test`
+## 1. 프로젝트 개발 목적
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- React Hooks를 활용하여 간단하지만 완성도 있는 App 만들기
+- 비동기처리, API를 활용하여 효율적인 데이터 처리하기
 
-### `yarn build`
+## 2. 기술 스택
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<img alt="HTML5" src="https://img.shields.io/badge/html5%20-%23E34F26.svg?&style=for-the-badge&logo=html5&logoColor=white"/> <img alt="CSS3" src="https://img.shields.io/badge/css3%20-%231572B6.svg?&style=for-the-badge&logo=css3&logoColor=white"/> <img alt="JavaScript" src="https://img.shields.io/badge/javascript%20-%23323330.svg?&style=for-the-badge&logo=javascript&logoColor=%23F7DF1E"/> <img alt="React" src="https://img.shields.io/badge/react%20-%2320232a.svg?&style=for-the-badge&logo=react&logoColor=%2361DAFB"/>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 3. 프로젝트 구성
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![moviePresentation](https://user-images.githubusercontent.com/68681344/140879388-33abd26c-87ec-4030-8f58-f22f292ee773.PNG)
 
-### `yarn eject`
+### 간단한 Component 설명
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+    # movieService
+      - OMDB API로 부터 받은 영화 데이터를 비동기적으로 처리해 효율적인 데이터를 다른 component에 전달해줍니다.
+      (유명 영화 목록, 자세한 페이지 & 영화 연관 목록, 영화 검색 목록)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    # App
+      - 전체적인 state를 관리하는 component 입니다. 초기 데이터는 initialMovieData라는 객체에 담아 관리하며,
+        useReducer를 사용하여 페이지가 처음 render가 발생하거나 이벤트가 발생했을 때 movieList, movieDetailList에
+        API로 부터 받은 데이터를 전달해줍니다.
+      - useEffect를 사용하여 movieDetailList에 값이 들어올 때 마다 detailPage로 페이지가 이동합니다.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+    # Main
+      - useEffect를 사용하여 처음 render 되었을 때 가장 인기 있는 영화 목록을 가져옵니다.
+      - useHistory를 사용하여 영화 id를 받아온 후 detailPage로 이동할 수 있습니다.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+    # Header
+      - useEffect를 사용하여 movie App의 로고를 클릭하였을 때 history.push를 활용하여 Main 화면으로 이동할 수 있습니다.
 
-## Learn More
+    # MovieDetailPage
+      - movieDetailList를 받아와 movieDetailList에 값이 있을 경우 화면을 render 하여 보여주고 그렇지 않을 경우는 경고 화면을 보여줍니다.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    # MovieScreen
+      - useRef를 사용하여 검색창에 들어갈 text 값을 관리하여 submit 이벤트가 발생하면 값을 전달해줍니다.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    # MovieList
+      - map 함수를 활용하여 movieList에 있는 데이터를 movieItem으로 전달해줍니다.
 
-### Code Splitting
+    # MovieItem
+      - movieList로부터 받은 데이터를 활용하여 영화의 정보가 보여지는 Component 입니다.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+    # MovieInfo
+      - detailMovie로 부터 받은 영화의 자세한 정보를 보여주는 Component 입니다.
 
-### Analyzing the Bundle Size
+## 4. 페이지 구성
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Demo Link ⇒ [준비중](준비중)
 
-### Making a Progressive Web App
+### 😀 메인 페이지
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+![image](https://user-images.githubusercontent.com/68681344/140880756-82b9a6b1-5484-48f0-a3f0-033cf9e4d9d5.png)
 
-### Advanced Configuration
+- 가장 인기 있는 영화 목록을 확인할 수 있습니다.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### 🔎 검색 기능
 
-### Deployment
+![image](https://user-images.githubusercontent.com/68681344/140881611-58ca3e20-ba5a-49fa-a93a-67793cdd9287.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- 입력된 키워드를 통해 검색한 영화의 목록을 확인할 수 있습니다.
 
-### `yarn build` fails to minify
+### 🌎 상세 페이지 & 연관 영화 목록
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![image](https://user-images.githubusercontent.com/68681344/140886882-db299f85-6a00-4ab0-85b5-8d5570e24793.png)
+
+- 메인 페이지에서 영화를 클릭하면 나오는 페이지로 영화의 자세한 정보를 확인할 수있습니다.
+- 영화를 선택할 때마다 해당 영화에 알맞은 관련된 영화 목록으로 변경됩니다.
+
+## 5. 프로젝트를 통해 배운 점
+
+- ##### useState, useReducer, useEffect 등 react hooks를 활용하여 react의 state를 효율적으로 관리하는 방법을 알았습니다.
+- ##### useCallback, memo 등을 활용하여 함수형 componet의 단점인 계속적으로 render가 발생하는 부분을 보완하여 프로젝트를 구성하였습니다.
+- ##### react router를 활용하여 이벤트가 발생할 때마다 새로 페이지를 render 하는 것이 아니라 component만 변경하여 효율적으로 데이터를 관리하는 방법을 알았습니다.
+
+## 6. 개선할 점
+
+- ##### 이번 프로젝트의 규모가 크지 않다는 점을 파악하여 useReducer를 활용하여 state를 관리하였는데 contextApi를 활용하였으면 조금 더 state를 깔끔하게 관리할 수 있겠다는 생각이 들었습니다.
+- ##### 영화 API 뿐만 아니라 TV API 인물 API 등등 제공되는 API가 많이 있는데 movieService 뿐만 아니라 다양한 service 파일을 만들어 프로젝트의 규모를 키우면 좋겠다는 생각이 들었습니다.
+- ##### firebase를 활용하여 로그인 기능과 database를 구축하여 사용자가 관심있는 영화를 클릭하면 해당 목록을 보여주는 작업을 하면 좋겠다는 생각이 들었습니다.

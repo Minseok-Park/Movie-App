@@ -10,12 +10,12 @@ function App({ movieService }) {
   const history = useHistory();
   // 초기 state 데이터
   const initialMovieData = {
-    movieList: null,
+    movieList: [],
     movieDetailList: null,
   };
 
   // 영화 state를 관리해주는 reducer
-  function movieReducer(state, action) {
+  function movieReducer(state = initialMovieData, action) {
     switch (action.type) {
       case "GET_MOVIES":
         return {
@@ -40,6 +40,7 @@ function App({ movieService }) {
   // state와 dispatch
   const [state, dispatch] = useReducer(movieReducer, initialMovieData);
 
+  // click 이벤트로부터 받아온 영화의 id를 전달하여 영화의 자세한 정보를 받아오는 함수
   const onDetail = useCallback(
     (movieId) => {
       movieService.detailMovie(movieId).then((response) => {

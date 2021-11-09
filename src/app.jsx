@@ -41,17 +41,17 @@ function App({ movieService }) {
   const [state, dispatch] = useReducer(movieReducer, initialMovieData);
 
   // click 이벤트로부터 받아온 영화의 id를 전달하여 영화의 자세한 정보를 받아오는 함수
-  const onDetail = useCallback(
-    (movieId) => {
-      movieService.detailMovie(movieId).then((response) => {
-        dispatch({
-          type: "DETAIL_MOVIES",
-          data: response,
-        });
-      });
-    },
-    [movieService]
-  );
+  // const onDetail = useCallback(
+  //   (movieId) => {
+  //     movieService.detailMovie(movieId).then((response) => {
+  //       dispatch({
+  //         type: "DETAIL_MOVIES",
+  //         data: response,
+  //       });
+  //     });
+  //   },
+  //   [movieService]
+  // );
 
   // 처음 DetailList의 state를 null 값으로 변경
   useEffect(() => {

@@ -1,5 +1,4 @@
-import React, { useState, memo } from "react";
-import { useCallback } from "react/cjs/react.development";
+import React, { useState, memo, useCallback } from "react";
 
 import styles from "./movieItem.module.css";
 

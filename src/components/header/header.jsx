@@ -1,8 +1,7 @@
-import React, { memo } from "react";
+import React, { memo, useCallback } from "react";
 import styles from "./header.module.css";
 import { FaPlus, FaInfoCircle, FaCanadianMapleLeaf } from "react-icons/fa";
 import { useHistory } from "react-router";
-import { useCallback } from "react/cjs/react.development";
 
 const Header = (props) => {
   const history = useHistory();

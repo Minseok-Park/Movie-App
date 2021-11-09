@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { useHistory } from "react-router";
-import { useCallback, useEffect } from "react/cjs/react.development";
 import MovieList from "../movieList/movieList";
 import MovieScreen from "../movieScreen/movieScreen";
 

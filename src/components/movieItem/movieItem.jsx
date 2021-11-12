@@ -1,20 +1,28 @@
 import React, { useState, memo, useCallback } from "react";
+import { useHistory } from "react-router";
 
 import styles from "./movieItem.module.css";
 
-const MovieItem = ({ onDetail, id, title, poster, vote, date }) => {
+const MovieItem = ({ id, title, poster, vote, date }) => {
   const imgLink = "https://image.tmdb.org/t/p/w200/";
 
   const [uid, setUid] = useState(id);
 
-  const onClick = useCallback(() => {
-    id && setUid(id);
-    onDetail(uid);
-  }, [id, onDetail, uid]);
+  const history = useHistory();
+
+  const goToDetail = useCallback(() => {
+    setUid(id);
+    history.push({
+      pathname: `/detail/${uid}`,
+      state: {
+        uid,
+      },
+    });
+  }, [history, id, uid]);
 
   return (
     <>
-      <li onClick={onClick} className={styles.movie}>
+      <li className={styles.movie} onClick={goToDetail}>
         <img
           className={styles.poster}
           src={`${imgLink}${poster}`}

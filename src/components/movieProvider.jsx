@@ -32,20 +32,6 @@ function movieReducer(state, action) {
 const MovieStateContext = createContext();
 const MovieDispatchContext = createContext();
 
-export function useMovieState() {
-  const context = useContext(MovieStateContext);
-  if (!context) {
-    throw new Error("Can't not find useMovieState");
-  }
-}
-
-export function useMovieDispatch() {
-  const context = useContext(MovieDispatchContext);
-  if (!context) {
-    throw new Error("Can't not find useMovieDispatch");
-  }
-}
-
 export function MovieProvider({ children }) {
   const [state, dispatch] = useReducer(movieReducer, initialState);
 
@@ -56,4 +42,20 @@ export function MovieProvider({ children }) {
       </MovieDispatchContext.Provider>
     </MovieStateContext.Provider>
   );
+}
+
+export function useMovieState() {
+  const context = useContext(MovieStateContext);
+  if (!context) {
+    throw new Error("Can't not find useMovieState");
+  }
+  return context;
+}
+
+export function useMovieDispatch() {
+  const context = useContext(MovieDispatchContext);
+  if (!context) {
+    throw new Error("Can't not find useMovieDispatch");
+  }
+  return context;
 }

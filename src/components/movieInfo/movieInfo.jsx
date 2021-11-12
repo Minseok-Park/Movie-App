@@ -3,6 +3,8 @@ import styles from "./movieInfo.module.css";
 import { FaCrown } from "react-icons/fa";
 
 const MovieInfo = ({ detailMovie }) => {
+  console.log(detailMovie);
+
   const imgLink = "https://image.tmdb.org/t/p/w300/";
   const {
     poster_path,
@@ -54,6 +56,10 @@ const MovieInfo = ({ detailMovie }) => {
       </div>
     </section>
   );
+};
+
+MovieInfo.defaultProps = {
+  detailMovie: {},
 };
 
 export default memo(MovieInfo);

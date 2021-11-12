@@ -3,7 +3,7 @@ import styles from "./header.module.css";
 import { FaPlus, FaInfoCircle, FaCanadianMapleLeaf } from "react-icons/fa";
 import { useHistory } from "react-router";
 
-const Header = (props) => {
+const Header = (prop) => {
   const history = useHistory();
   const goToMain = useCallback(() => {
     history.push({

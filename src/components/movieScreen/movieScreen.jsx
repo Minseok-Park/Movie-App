@@ -5,12 +5,11 @@ const MovieScreen = ({ onSearch }) => {
   const inputRef = useRef();
   const formRef = useRef();
 
-  const [value, setValue] = useState();
+  const [value, setValue] = useState("");
 
   const onChange = useCallback((e) => {
     const { value } = e.target;
-    inputRef.current = value;
-    setValue(inputRef.current);
+    setValue(value);
   }, []);
 
   const onSubmit = useCallback(

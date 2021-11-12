@@ -2,7 +2,7 @@ import React from "react";
 import MovieItem from "../movieItem/movieItem";
 import styles from "./movieList.module.css";
 
-const MovieList = ({ movieList, onDetail, title }) => {
+const MovieList = ({ movieList, title }) => {
   return (
     <section className={styles.section}>
       <div className={styles.container}>
@@ -20,7 +20,6 @@ const MovieList = ({ movieList, onDetail, title }) => {
                 poster={movie.poster_path}
                 vote={movie.vote_average}
                 date={movie.release_date}
-                onDetail={onDetail}
               />
             ))}
         </ul>

@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import styles from "./movieDetailPage.module.css";
-import Header from "../header/header";
 import MovieInfo from "../movieInfo/movieInfo";
 import MovieList from "../movieList/movieList";
 import { useParams } from "react-router";
@@ -26,7 +25,6 @@ const MovieDetailPage = ({ movieService }) => {
 
   return (
     <>
-      <Header />
       <div className={styles.movieDeatilPage}>
         {movieDetailList[0] && <MovieInfo detailMovie={detailMovie} />}
         <MovieList movieList={movieList} title="관련된 영화 목록" />

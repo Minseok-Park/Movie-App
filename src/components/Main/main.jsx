@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
 import MovieList from "../movieList/movieList";
-import Header from "../header/header";
 import { useMovieDispatch, useMovieState } from "../movieProvider";
 import MovieScreen from "../movieScreen/movieScreen";
 
@@ -12,8 +11,8 @@ const Main = ({ movieService }) => {
   const [search, setSearch] = useState(false);
 
   const onSearch = useCallback(
-    (id) => {
-      movieService.searchMovie(id).then((data) =>
+    (keyword) => {
+      movieService.searchMovie(keyword).then((data) =>
         dispatch({
           type: "SEARCH_MOVIES",
           data,
@@ -35,7 +34,6 @@ const Main = ({ movieService }) => {
 
   return (
     <>
-      <Header />
       <MovieScreen onSearch={onSearch} />
       {search && <MovieList title="검색된 영화 목록" movieList={movieList} />}
       {!search && (

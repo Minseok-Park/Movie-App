@@ -4,7 +4,7 @@
 
 _OMDB API를 활용 (영화 목록, 검색, 관련 있는 영화 목록)_
 
-Demo Link ⇒ [Movie App](준비중)
+App Link ⇒ [Movie App](https://ms-movie.netlify.app/#/)
 
 ---
 
@@ -152,3 +152,6 @@ Demo Link ⇒ [준비중](준비중)
 - ##### 영화 API 뿐만 아니라 TV API 인물 API 등등 제공되는 API가 많이 있는데 movieService 뿐만 아니라 다양한 service 파일을 만들어 프로젝트의 규모를 키우면 좋겠다는 생각이 들었습니다. (준비중)
 - ##### firebase를 활용하여 로그인 기능과 database를 구축하여 사용자가 관심있는 영화를 클릭하면 해당 목록을 보여주는 작업을 하면 좋겠다는 생각이 들었습니다. (준비중)
 - ##### 프로젝트 규모가 크지는 않지만 연습을 위해 Redux를 활용해 보는 것도 좋을 것 같다는 생각이 들었습니다. 비동기 처리의 경우 redux-thunk를 활용하며 Ducks-pattern을 활용하여 각각의 aciton 타입, 함수, reducer를 구현해 볼 생각입니다.(준비중)
+
+- ##### BrowserRouter로 배포하는 과정에서 url 값을 읽지 못하는 문제가 발생하여 임시 방편으로 hashRouter를 사용하였습니다.
+- ##### netlify로 배포하는 과정에서 .env에 있는 api-key 값을 읽어오지 못해 문제를 해결하는데 힘들었습니다. netlify 사이의 환경변수 설정하는 부분에 env에 해당하는 값을 넣어주니 문제가 해결되었습니다.

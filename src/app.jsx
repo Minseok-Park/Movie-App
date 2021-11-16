@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route, BrowserRouter } from "react-router-dom";
+import { Switch, Route, HashRouter } from "react-router-dom";
 import Main from "./components/Main/main";
 import Header from "./components/header/header";
 import MovieDetailPage from "./components/movieDetailPage/movieDetailPage";
@@ -7,7 +7,7 @@ import { MovieProvider } from "./components/movieProvider";
 
 function App({ movieService }) {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Switch>
         <MovieProvider>
           <Header />
@@ -19,7 +19,7 @@ function App({ movieService }) {
           </Route>
         </MovieProvider>
       </Switch>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
